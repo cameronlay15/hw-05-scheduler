@@ -28,6 +28,8 @@ var planWorkday = [
 console.log(now)
 console.log(planWorkday)
 
+
+
 planWorkday.forEach(function(timeBlock, index) {
 	var timeLabel = timeBlock.time;
 	var blockColor = colorMe(timeLabel);
@@ -60,6 +62,14 @@ function colorMe(time) {
 		return "present";
 	}
 }
+
+$(".saveBtn").on("click", function(event) {
+	var blockID = parseInt(
+		$(this)
+			.closest(".time-block")
+			.attr("id")
+    );
+    });
 
 
 
