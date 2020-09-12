@@ -28,6 +28,10 @@ var planWorkday = [
 console.log(now)
 console.log(planWorkday)
 
+var checkPrevious = JSON.parse(localStorage.getItem("dayPlanner"));
+	if (checkPrevious !== null) {
+	planWorkday = checkPrevious;
+}
 
 
 planWorkday.forEach(function(timeBlock, index) {
@@ -62,14 +66,26 @@ function colorMe(time) {
 		return "present";
 	}
 }
-
+// save button functionality
 $(".saveBtn").on("click", function(event) {
 	var blockID = parseInt(
 		$(this)
 			.closest(".time-block")
 			.attr("id")
     );
-    });
+    var userEntry = $.trim(
+		$(this)
+			.parent()
+			.siblings("textarea")
+			.val()
+	);
+
+	// saves the entry
+	planWorkday[blockID].event = userEntry;
+
+	// updates planWorkday local storage
+	localStorage.setItem("dayPlanner", JSON.stringify(planWorkday));
+});
 
 
 
